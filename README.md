@@ -1,69 +1,148 @@
-# React + TypeScript + Vite
+# 🎯 Heap Analytics Case Study
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript application demonstrating **Heap Analytics** integration for user behavior tracking.
 
-Currently, two official plugins are available:
+## 📋 Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [📖 About](#about)
+- [🚀 Features](#features)
+- [📦 Installation](#installation)
+- [💻 Usage](#usage)
+- [📊 Heap Analytics Integration](#heap-analytics-integration)
+- [🧪 Demo Users](#demo-users)
 
-## Expanding the ESLint configuration
+## 📖 About
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project demonstrates **Heap Analytics integration** in a React application:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- User authentication with demo users
+- Automatic user identification via Heap Analytics
+- User properties tracking (userRole, planType)
+- Event tracking for user interactions
+- Modern React architecture with TypeScript
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📁 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+Heap-Analytics-Case/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── assets/
+│   │   └── react.svg
+│   ├── components/
+│   │   ├── dashboard.tsx
+│   │   └── loginComponent.tsx
+│   ├── context/
+│   │   └── authContext.tsx
+│   ├── hooks/
+│   │   └── useHeapTracking.ts
+│   ├── types/
+│   │   ├── heap.d.ts
+│   │   └── user.ts
+│   ├── App.tsx
+│   ├── App.css
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── index.html
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+├── tailwind.config.js
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Authentication**: Demo login with role-based access
+- **Analytics**: Automatic user identification and event tracking
+- **UI**: Modern design with Chakra UI
+- **Plans**: Free vs Premium feature restrictions
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📦 Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/semanurgokirmak/Heap-Analytics-Case.git
+cd Heap-Analytics-Case
 ```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Start development server**
+```bash
+npm run dev
+```
+
+4. **Open browser:** http://localhost:5173
+
+## 💻 Usage
+
+### Demo Users
+
+1. **Admin User (Premium)**
+   - Email: `admin@heapcase.com`
+   - Access: All features
+
+2. **Regular User (Free)** 
+   - Email: `subscriber@heapcase.com`
+   - Access: Basic features only
+
+### How to Test
+
+1. Open the application
+2. Click "Quick Demo Login" buttons or enter demo emails
+3. Enter any password 
+4. Explore features based on user type
+5. Check browser console for Heap analytics logs
+
+## 📊 Heap Analytics Integration
+
+### Case Requirements Implementation
+
+✅ **User Identification on Login**
+- `heap.identify(userId)` called after successful authentication
+
+✅ **User Properties Tracking**  
+- `heap.addUserProperties()` sends userRole and planType data
+
+✅ **Event Tracking**
+- Feature usage tracking
+- Premium feature blocking events
+
+## 🧪 Demo Users
+
+```javascript
+// Admin User (Premium Plan)
+{
+  userId: 'user_admin_001',
+  email: 'admin@heapcase.com', 
+  userRole: 'admin',
+  planType: 'premium'
+}
+
+// Regular User (Free Plan)
+{
+  userId: 'user_subscriber_002',
+  email: 'subscriber@heapcase.com',
+  userRole: 'subscriber', 
+  planType: 'free'
+}
+```
+
+**Admin User:** ✅ All features  
+**Regular User:** ✅ Basic features, ❌ Premium features blocked
+
+---
+
+## 👥 Author
+
+**Semanur Gökırmak** - [@semanurgokirmak](https://github.com/semanurgokirmak)
+
+---
+
+**⭐ If this project helped you understand Heap Analytics integration, please give it a star!**
