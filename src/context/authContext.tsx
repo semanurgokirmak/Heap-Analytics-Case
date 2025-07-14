@@ -23,12 +23,34 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     });
     
     if (window.heap) {
-      window.heap.track('User Login', {
-        loginMethod: 'demo',
-        userRole: userData.userRole,
-        planType: userData.planType,
-        timestamp: new Date().toISOString()
-      });
+      try {
+        window.heap.identify(userData.userId);
+        
+        window.heap.addUserProperties({
+          userRole: userData.userRole,
+          planType: userData.planType, 
+          email: userData.email,
+          firstName: userData.firstName || '',
+          lastName: userData.lastName || '',
+          loginTimestamp: new Date().toISOString(),
+          environment: import.meta.env.MODE
+        });
+        
+        window.heap.track('User Login', {
+          loginMethod: 'demo',
+          userRole: userData.userRole,
+          planType: userData.planType,
+          timestamp: new Date().toISOString()
+        });
+        
+        console.log('✅ Heap: User successfully identified', {
+          userId: userData.userId,
+          userRole: userData.userRole,
+          planType: userData.planType
+        });
+      } catch (error) {
+        console.error('❌ Heap Analytics error:', error);
+      }
     }
   }, []);
 
